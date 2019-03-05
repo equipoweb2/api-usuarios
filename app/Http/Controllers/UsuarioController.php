@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Usuario;
 
 class UsuarioController extends Controller
 {
@@ -13,7 +14,7 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        //
+        return Usuario::all();
     }
 
     /**
@@ -45,7 +46,7 @@ class UsuarioController extends Controller
      */
     public function show($id)
     {
-        //
+        return Usuario::find($id);
     }
 
     /**
