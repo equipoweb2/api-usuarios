@@ -35,7 +35,18 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'email' => 'required|email|unique:usuarios|max:255',
+            'nombre' => 'required|string|max:255',
+            'apellidos' => 'required|string|max:255'
+        ]);
+        $usuario = new Usuario();
+        $usuario->nombre = $request->get('nombre');
+        $usuario->apellidos = $request->get('apellidos');
+        $usuario->email = $request->get('email');
+        $usuario->save();
+
+        return $usuario;
     }
 
     /**
@@ -80,6 +91,9 @@ class UsuarioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Usuario::destroy($id);
+        return response()->json([
+            'id' => $id
+        ]);
     }
 }
